@@ -1,5 +1,5 @@
 # foo_session
-For `foobar2000` `v2`+: Prints every hour session time to console
+For `foobar2000` `v2` and newer: Prints every hour session time to console
 
 # Building from source
 Requirements:

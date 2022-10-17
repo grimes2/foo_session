@@ -17,7 +17,7 @@ VALIDATE_COMPONENT_FILENAME("foo_session.dll");
 #define ID_TIMER21 1019
 
 UINT_PTR ptr21 = 0;
-int session_tim;
+int session_time;
 
 VOID CALLBACK SessionTimer(
 	HWND hwnd,        // handle to window for timer messages

@@ -7,7 +7,7 @@ static constexpr const char* component_name = "Session";
 
 DECLARE_COMPONENT_VERSION(
 	component_name,
-	"1.3",
+	"1.4",
 	"grimes\n\n"
 	"Build: " __TIME__ ", " __DATE__
 );
@@ -20,10 +20,10 @@ UINT_PTR ptr21 = 0;
 int session_time;
 
 VOID CALLBACK SessionTimer(
-	HWND hwnd,        // handle to window for timer messages
-	UINT message,     // WM_TIMER message
-	UINT idEvent1,     // timer identifier
-	DWORD dwTime)     // current system time
+	HWND,        // handle to window for timer messages
+	UINT,     // WM_TIMER message
+	UINT,     // timer identifier
+	DWORD)     // current system time
 {
 	session_time++;
 	FB2K_console_formatter() << "Session " << session_time << "h";

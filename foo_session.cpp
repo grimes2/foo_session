@@ -19,7 +19,7 @@ VALIDATE_COMPONENT_FILENAME("foo_session.dll");
 UINT_PTR ptr21 = 0;
 int session_time;
 int total_playback_time;
-int playback = 1;
+int playback_time = 1;
 
 VOID CALLBACK SessionTimer(
 	HWND,        // handle to window for timer messages
@@ -62,9 +62,9 @@ public:
 	virtual void on_playback_time(double p_time)
 	{
 		total_playback_time++;
-		if (total_playback_time == playback * 3600) {
-			FB2K_console_formatter() << "Playback " << playback << "h";
-			playback++;
+		if (total_playback_time == playback_time * 3600) {
+			FB2K_console_formatter() << "Playback " << playback_time << "h";
+			playback_time++;
 		}
 	}
 	virtual void FB2KAPI on_playback_new_track(metadb_handle_ptr p_track) {}

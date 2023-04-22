@@ -18,6 +18,8 @@ VALIDATE_COMPONENT_FILENAME("foo_session.dll");
 
 UINT_PTR ptr21 = 0;
 int session_time;
+int total_playback_time;
+int playback = 1;
 
 VOID CALLBACK SessionTimer(
 	HWND,        // handle to window for timer messages
@@ -45,3 +47,35 @@ public:
 };
 
 initquit_factory_t<start> g_start;
+
+
+class play_callback_session : public play_callback_static
+{
+
+public:
+
+	virtual unsigned get_flags(void)
+	{
+		return(flag_on_playback_time);
+	}
+
+	virtual void on_playback_time(double p_time)
+	{
+		total_playback_time++;
+		if (total_playback_time == playback * 3600) {
+			FB2K_console_formatter() << "Playback " << playback << "h";
+			playback++;
+		}
+	}
+	virtual void FB2KAPI on_playback_new_track(metadb_handle_ptr p_track) {}
+	virtual void on_playback_stop(play_control::t_stop_reason) {}
+	virtual void on_playback_pause(bool) {}
+	virtual void on_playback_starting(play_control::t_track_command, bool) {}
+	virtual void on_playback_seek(double) {}
+	virtual void on_playback_edited(metadb_handle_ptr) {}
+	virtual void on_playback_dynamic_info(const file_info&) {}
+	virtual void on_playback_dynamic_info_track(const file_info&) {}
+	virtual void on_volume_change(float) {}
+};
+
+static play_callback_static_factory_t<play_callback_session> g_play_callback_session;
